@@ -1,0 +1,13 @@
+{
+    "models": {
+        "word2vec": [
+            {
+                "description": "Використовується нейронна векторна модель представлення слів «Уберкорпус», алгоритм word2vec word embeddings розмірністю 300d. Сутність - слово, лематизовано, приведено до нижнього регистру. Параметри word2vec: -size 300 -negative 7 -window 4 -threads 6 -min_count 10 -iter 5 -alpha 0.030",
+                "name": "ubercorpus.lowercased.lemmatized.word2vec.c.text.format.300d",
+                "link": "./models/ubercorpus.lowercased.lemmatized.word2vec.c.text.format.300d",
+                "language": "ua",
+                "index": 1
+            }
+        ]
+    }
+}
