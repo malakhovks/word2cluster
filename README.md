@@ -1,8 +1,8 @@
-# docsim / UkrVectōrēs
+# Semantris inspired by Google Experiments Semantris
 
-**docsim/UkrVectōrēs** – An NLU-powered tool for knowledge discovery, classification, diagnostics and prediction.
+**Semantris** – Word association game powered by semantic search (with word embeddings).
 
-You can preview a completed latest version of the UkrVectōrēs app here:
+<!-- You can preview a completed latest version of the UkrVectōrēs app here:
 
 - without ssl certificate [http://test.ulif.org.ua:51082](http://test.ulif.org.ua:51082)
 - with self-singed ssl certificate [https://test.ulif.org.ua:51043](https://test.ulif.org.ua:51043)
@@ -163,4 +163,4 @@ Build an docker image from Dockerfile-nginx, Dockerfile-docsim with docker-compo
 
 ```bash
 docker-compose up -d
-```
+``` -->
