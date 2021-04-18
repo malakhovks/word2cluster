@@ -37,5 +37,5 @@ w2v = gensim.models.KeyedVectors.load_word2vec_format("../models/ubercorpus.lowe
 print(w2v.most_similar_to_given("балада", ["байка", "монітор", "планшет", "балада", "вірш"]))
 print(w2v.distances("балада", ["байка", "монітор", "планшет", "балада", "вірш"]))
 # random_word = random.choice(w2v.index_to_key)
-random_word = random.sample(w2v.index_to_key, 10)
+random_word = random.sample(w2v.index_to_key, 100)
 print("Random word: "+ str(random_word))

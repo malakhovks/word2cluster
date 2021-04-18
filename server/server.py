@@ -92,44 +92,6 @@ def getExistsWordsInModel(words, keyed_vectors):
             exists.append(word)
     return exists
 
-# @app.route('/')
-# def index():
-#     return Response(render_template('index-ukr.html'), mimetype='text/html')
-
-# let's Angular do the routs job
-# @app.route('/<path:page>')
-# def fallback(page):
-#     global config_flag
-#     if 'ua' in page:
-#         config_flag = 'ua'
-#         return render_template('index-ukr.html')
-#     if 'en' in page:
-#         config_flag = 'en'
-#         return render_template('index-eng.html')
-
-# special file handlers
-# @app.route('/favicon.ico')
-# def favicon():
-#     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
-
-# serve static images about-developers
-# @app.route('/assets/img/<path:path>')
-# def send_img(path):
-#     if request.args.get('lang') == 'ukr':
-#         return send_from_directory('static/ukr/img', path)
-#     if request.args.get('lang') == 'eng':
-#         return send_from_directory('static/eng/img', path)
-#     return send_from_directory('static/ukr/img', path)
-
-# serve static images about-sources
-# @app.route('/assets/sources-logos/<path:path>')
-# def send_logos(path):
-#     if request.args.get('lang') == 'ukr':
-#         return send_from_directory('static/ukr/sources-logos', path)
-#     if request.args.get('lang') == 'eng':
-#         return send_from_directory('static/eng/sources-logos', path)
-#     return send_from_directory('static/ukr/sources-logos', path)
-
 # * models list
 @app.route('/api/models')
 def get_models_list():
@@ -138,31 +100,25 @@ def get_models_list():
 # * computational endpoints
 @app.route('/api/word2vec/random/words', methods=['GET'])
 def get_random_words():
-    if request.args.get('model', type = int) and request.args.get('number', type = int):
+    try:
         random_words = random.sample(models_array[request.args.get('model', type = int)].index_to_key, request.args.get('number', type = int))
-    else:
-        random_words = random.sample(models_array[0].index_to_key, 10)
-    return jsonify({"random": random_words})
+        return jsonify({"random": random_words})
+    except Exception as e:
+        logging.error(e, exc_info=True)
+        return jsonify({"error": str(e)}), 500
 
 @app.route('/api/word2vec/similar', methods=['POST'])
 def get_similar():
-    if not request.json or not 'word' in request.json:
+    if not request.json or not 'word' in request.json or not 'words' in request.json:
         abort(400)
-        # TODO
-
-@app.route('/api/word2vec/similar', methods=['POST'])
-def find_similar():
-    if not request.json or not 'word' in request.json:
-        abort(400)
-    n = 100
     try:
         if request.args.get('model', type = int):
-            cosine_similar = models_array[request.args.get('model', type = int)].most_similar(request.json['word'], topn=n)
+            most_similar_word = models_array[request.args.get('model', type = int)].most_similar_to_given(request.json['word'], request.json['words'])
         else:
-            cosine_similar = models_array[0].most_similar(request.json['word'], topn=n)
-        return jsonify({"similar": cosine_similar})
+            most_similar_word = models_array[0].most_similar_to_given(request.json['word'], request.json['words'])
+        return jsonify({"similar": most_similar_word})
     except KeyError:
-        return jsonify({"Error": {"KeyError": "Word " + request.json['word'] + " does not exist in the word2vec model" , "Word": request.json['word']}})
+        return jsonify({"error": {"KeyError": "word does not exist in the word2vec model" , "word": request.json['word']}}), 400
 
 if __name__ == '__main__':
     # default port = 5000
