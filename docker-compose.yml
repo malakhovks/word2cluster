@@ -1,38 +1,11 @@
-# version: '3'
-# services:
-#   docsim:
-#     image: docsim-image
-#     build:
-#       context: .
-#       dockerfile: Dockerfile-docsim
-#     container_name: docsim
-#     restart: always
-#     volumes:
-#       - key-volume:/docsim/server/deploy/ssl
-#   nginx:
-#     image: nginx:latest
-#     restart: always
-#     volumes:
-#       - ./server/deploy/nginx.conf:/etc/nginx/nginx.conf
-#       - key-volume:/etc/nginx
-#       # - ./server/deploy/ssl/server.crt:/etc/nginx/server.crt
-#       # - ./server/deploy/ssl/server.key:/etc/nginx/server.key
-#     ports:
-#       - 8080:80
-#       - 7777:443
-#     depends_on:
-#       - docsim
-# volumes:
-#   key-volume:
-
 version: '3'
 services:
   docsim:
-    image: docsim-image
+    image: semantris-api-image
     build:
       context: .
-      dockerfile: Dockerfile-docsim
-    container_name: docsim
+      dockerfile: Dockerfile-api
+    container_name: semantris-api
     restart: always
   nginx:
     image: nginx-image
@@ -45,4 +18,4 @@ services:
       - 8002:80
       - 443:443
     depends_on:
-      - docsim
+      - semantris-api
