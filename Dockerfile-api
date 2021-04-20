@@ -4,7 +4,7 @@ LABEL maintainer "Kyrylo Malakhov <malakhovks@nas.gov.ua>"
 LABEL description "Semantris – Word association game powered by semantic search (with word embeddings)."
 
 COPY ./server /semantris/server
-WORKDIR /docsim/semantris/
+WORKDIR /semantris/server
 
 # Expose the port uWSGI will listen on
 EXPOSE 5000
