@@ -4,7 +4,7 @@ LABEL maintainer "Kyrylo Malakhov <malakhovks@nas.gov.ua>"
 LABEL description "Semantris – Word association game powered by semantic search (with word embeddings)."
 
 COPY ./server /semantris/server
-WORKDIR /docsim/semantris/
+WORKDIR /semantris/server
 
 # Expose the port uWSGI will listen on
 EXPOSE 5000
@@ -20,7 +20,7 @@ RUN apt-get -y clean \
     && pip install -r ./deploy/requirements.txt --src /usr/local/src \
     # Download fiction model as a default
     && wget -O ./models/ubercorpus.lowercased.lemmatized.word2vec.300d.bz2 https://lang.org.ua/static/downloads/models/ubercorpus.lowercased.lemmatized.word2vec.300d.bz2 \
-    && bzip2 -dc ./models/fiction.lowercased.lemmatized.word2vec.300d.bz2 ./models/ubercorpus.lowercased.lemmatized.word2vec.c.text.format.300d \
+    && bzip2 -d ./models/ubercorpus.lowercased.lemmatized.word2vec.300d.bz2 \
     && rm -r /root/.cache \
     && apt-get -y clean \
     && apt-get -y autoremove

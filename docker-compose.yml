@@ -1,11 +1,11 @@
 version: '3'
 services:
-  docsim:
+  semantris-api:
     image: semantris-api-image
     build:
       context: .
       dockerfile: Dockerfile-api
-    container_name: semantris-api
+    container_name: semantris
     restart: always
   nginx:
     image: nginx-image
