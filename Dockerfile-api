@@ -20,7 +20,7 @@ RUN apt-get -y clean \
     && pip install -r ./deploy/requirements.txt --src /usr/local/src \
     # Download fiction model as a default
     && wget -O ./models/ubercorpus.lowercased.lemmatized.word2vec.300d.bz2 https://lang.org.ua/static/downloads/models/ubercorpus.lowercased.lemmatized.word2vec.300d.bz2 \
-    && bzip2 -dc ./models/ubercorpus.lowercased.lemmatized.word2vec.300d.bz2 ./models/ubercorpus.lowercased.lemmatized.word2vec.c.text.format.300d \
+    && bzip2 -d ./models/ubercorpus.lowercased.lemmatized.word2vec.300d.bz2 ./models/ubercorpus.lowercased.lemmatized.word2vec.c.text.format.300d \
     && rm -r /root/.cache \
     && apt-get -y clean \
     && apt-get -y autoremove
