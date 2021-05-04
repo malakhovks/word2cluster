@@ -33,9 +33,11 @@ import random
 # restrict_w2v(w2v, restricted_word_set)
 # print(w2v.most_similar("казка"))
 
-w2v = gensim.models.KeyedVectors.load_word2vec_format("../models/ubercorpus.lowercased.lemmatized.word2vec.c.text.format.300d")
+w2v = gensim.models.KeyedVectors.load_word2vec_format("../models/ubercorpus.lowercased.lemmatized.word2vec.300d")
 print(w2v.most_similar_to_given("балада", ["байка", "монітор", "планшет", "балада", "вірш"]))
-print(w2v.distances("балада", ["байка", "монітор", "планшет", "балада", "вірш"]))
+dst = w2v.distances("балада", ["байка", "монітор", "планшет", "балада", "вірш"])
+print(dst)
 # random_word = random.choice(w2v.index_to_key)
 random_word = random.sample(w2v.index_to_key, 100)
 print("Random word: "+ str(random_word))
+print("-------")
