@@ -15,7 +15,7 @@ services:
     container_name: nginx
     restart: always
     ports:
-      - 8002:80
-      - 443:443
+      - 8008:80
+      - 8009:443
     depends_on:
       - semantris-api
