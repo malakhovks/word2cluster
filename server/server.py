@@ -35,7 +35,8 @@ if not os.path.exists('/var/tmp/output'):
 __author__ = "Kyrylo Malakhov <malakhovks@nas.gov.ua>"
 __copyright__ = "Copyright (C) 2020 Kyrylo Malakhov <malakhovks@nas.gov.ua>"
 
-app = Flask(__name__)
+# app = Flask(__name__)
+app = Flask(__name__, template_folder='/var/tmp/output')
 CORS(app)
 
 """
@@ -134,7 +135,7 @@ def get_similar():
 def get_vec2graph_viz():
     try:
         visualize('/var/tmp/output', models_array[request.args.get('model', type = int)], request.args.get('word', type = str), depth=0, topn=100, threshold=request.args.get('threshold', type = int), edge=1, sep=False, library="web")
-        return render_template('/var/tmp/output/index.html')
+        return render_template(request.args.get('word', type = str) + '.html')
     except Exception as e:
         logging.error(e, exc_info=True)
         return jsonify({"error": str(e)}), 500
