@@ -1,11 +1,11 @@
 version: '3'
 services:
-  semantris-api:
-    image: semantris-api-image
+  composition-api:
+    image: composition-api-image
     build:
       context: .
       dockerfile: Dockerfile-api
-    container_name: semantris
+    container_name: composition
     restart: always
   nginx:
     image: nginx-image
@@ -18,4 +18,4 @@ services:
       - 8008:80
       - 8009:443
     depends_on:
-      - semantris-api
+      - composition-api
