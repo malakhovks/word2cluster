@@ -36,7 +36,10 @@ __author__ = "Kyrylo Malakhov <malakhovks@nas.gov.ua>"
 __copyright__ = "Copyright (C) 2020 Kyrylo Malakhov <malakhovks@nas.gov.ua>"
 
 # app = Flask(__name__)
-app = Flask(__name__, template_folder='/var/tmp/output')
+app = Flask(__name__,
+            static_url_path='', 
+            static_folder='/var/tmp/output',
+            template_folder='/var/tmp/output')
 CORS(app)
 
 """
@@ -141,8 +144,7 @@ def get_vec2graph_viz():
     #     return jsonify({"error": str(e)}), 500
     try:
         visualize('/var/tmp/output', models_array[request.args.get('model', type = int)], 'казка', depth=0, topn=100, threshold=request.args.get('threshold', type = int), edge=1, sep=False, library="web")
-        # return render_template('казка.html')
-        return send_from_directory('/var/tmp/output', 'казка.html')
+        return render_template('казка.html')
     except Exception as e:
         logging.error(e, exc_info=True)
         return jsonify({"error": str(e)}), 500
