@@ -25,8 +25,12 @@ import gensim
 
 from vec2graph import visualize
 
-import pathlib
-pathlib.Path(pathlib.Path.cwd() + '/output').mkdir(parents=True, exist_ok=True) 
+if not os.path.exists('/var/tmp/output'):
+    try:
+        os.makedirs('/var/tmp/output', 0o755)
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            raise
 
 __author__ = "Kyrylo Malakhov <malakhovks@nas.gov.ua>"
 __copyright__ = "Copyright (C) 2020 Kyrylo Malakhov <malakhovks@nas.gov.ua>"
@@ -129,8 +133,8 @@ def get_similar():
 @app.route('/api/vec2graph')
 def get_vec2graph_viz():
     try:
-        visualize('./output/', models_array[request.args.get('model', type = int)], request.args.get('word', type = str), depth=0, topn=100, threshold=request.args.get('threshold', type = int), edge=1, sep=False, library="web")
-        return render_template('./output/index.html')
+        visualize('/var/tmp/output', models_array[request.args.get('model', type = int)], request.args.get('word', type = str), depth=0, topn=100, threshold=request.args.get('threshold', type = int), edge=1, sep=False, library="web")
+        return render_template('/var/tmp/output/index.html')
     except Exception as e:
         logging.error(e, exc_info=True)
         return jsonify({"error": str(e)}), 500
