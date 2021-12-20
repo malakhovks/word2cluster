@@ -23,6 +23,8 @@ from flask_cors import CORS
 
 import gensim
 
+from vec2graph import visualize
+
 __author__ = "Kyrylo Malakhov <malakhovks@nas.gov.ua>"
 __copyright__ = "Copyright (C) 2020 Kyrylo Malakhov <malakhovks@nas.gov.ua>"
 
@@ -119,6 +121,16 @@ def get_similar():
         return jsonify({"similar": most_similar_word})
     except KeyError:
         return jsonify({"error": {"KeyError": "word does not exist in the word2vec model" , "word": request.json['word']}}), 400
+
+# * vec2graph
+@app.route('/api/vec2graph')
+def get_vec2graph_viz():
+    try:
+        visualize('./templates/', models_array[request.args.get('model', type = int)], request.args.get('word', type = str), depth=0, topn=100, threshold=request.args.get('threshold', type = int), edge=1, sep=False, library="web")
+        return render_template('index.html')
+    except Exception as e:
+        logging.error(e, exc_info=True)
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     # default port = 5000
