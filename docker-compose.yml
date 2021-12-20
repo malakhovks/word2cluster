@@ -12,7 +12,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-nginx
-    container_name: nginx
+    container_name: composition-nginx
     restart: always
     ports:
       - 8008:80
