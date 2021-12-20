@@ -36,7 +36,7 @@ __author__ = "Kyrylo Malakhov <malakhovks@nas.gov.ua>"
 __copyright__ = "Copyright (C) 2020 Kyrylo Malakhov <malakhovks@nas.gov.ua>"
 
 # app = Flask(__name__)
-app = Flask(__name__, static_folder='/var/tmp/output', static_url_path='')
+app = Flask(__name__, static_folder='/var/tmp/output', static_url_path='api')
 CORS(app)
 
 """
