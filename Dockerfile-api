@@ -17,6 +17,7 @@ RUN apt-get -y clean \
     && apt-get -y install bzip2 \
     && apt-get -y install wget \
     && apt-get -y install curl \
+    && apt-get -y install git \
     && pip install -r ./deploy/requirements.txt --src /usr/local/src \
     # Download fiction model as a default
     && wget -O ./models/ubercorpus.lowercased.lemmatized.word2vec.300d.bz2 https://lang.org.ua/static/downloads/models/ubercorpus.lowercased.lemmatized.word2vec.300d.bz2 \
