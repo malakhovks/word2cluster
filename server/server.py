@@ -133,9 +133,15 @@ def get_similar():
 # * vec2graph
 @app.route('/api/vec2graph')
 def get_vec2graph_viz():
+    # try:
+    #     visualize('/var/tmp/output', models_array[request.args.get('model', type = int)], request.args.get('word', type = str), depth=0, topn=100, threshold=request.args.get('threshold', type = int), edge=1, sep=False, library="web")
+    #     return render_template(request.args.get('word', type = str) + '.html')
+    # except Exception as e:
+    #     logging.error(e, exc_info=True)
+    #     return jsonify({"error": str(e)}), 500
     try:
-        visualize('/var/tmp/output', models_array[request.args.get('model', type = int)], request.args.get('word', type = str), depth=0, topn=100, threshold=request.args.get('threshold', type = int), edge=1, sep=False, library="web")
-        return render_template(request.args.get('word', type = str) + '.html')
+        visualize('/var/tmp/output', models_array[request.args.get('model', type = int)], 'казка', depth=0, topn=100, threshold=request.args.get('threshold', type = int), edge=1, sep=False, library="web")
+        return render_template('казка.html')
     except Exception as e:
         logging.error(e, exc_info=True)
         return jsonify({"error": str(e)}), 500
