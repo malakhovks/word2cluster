@@ -139,10 +139,18 @@ def get_vec2graph_viz():
     # except Exception as e:
     #     logging.error(e, exc_info=True)
     #     return jsonify({"error": str(e)}), 500
+    # try:
+    #     visualize('/var/tmp/output', models_array[request.args.get('model', type = int)], 'казка', depth=0, topn=100, threshold=request.args.get('threshold', type = int), edge=1, sep=False, library="web")
+    #     # return render_template('казка.html')
+    #     return send_from_directory(app.static_folder, 'казка.html')
+    # except Exception as e:
+    #     logging.error(e, exc_info=True)
+    #     return jsonify({"error": str(e)}), 500
     try:
-        visualize('/var/tmp/output', models_array[request.args.get('model', type = int)], 'казка', depth=0, topn=100, threshold=request.args.get('threshold', type = int), edge=1, sep=False, library="web")
+        _word = request.args.get('word')
+        visualize('/var/tmp/output', models_array[request.args.get('model', type = int)], _word, depth=0, topn=100, threshold=request.args.get('threshold', type = int), edge=1, sep=False, library="web")
         # return render_template('казка.html')
-        return send_from_directory(app.static_folder, 'казка.html')
+        return send_from_directory(app.static_folder, _word + '.html')
     except Exception as e:
         logging.error(e, exc_info=True)
         return jsonify({"error": str(e)}), 500
