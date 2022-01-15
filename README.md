@@ -1,11 +1,11 @@
-# International Workshop Advances & Challenges in Computing (A2C)
+# word2cluster
+<!-- 
+## Topic: Deep learning and inductive inference technologies composition for the development of ontology-related systems -->
 
-## Topic: Deep learning and inductive inference technologies composition for the development of ontology-related systems
-
-**Speakers: Kyrylo Malakhov, Velychko Vitalii**
+<!-- **Speakers: Kyrylo Malakhov, Velychko Vitalii**
 
 V.M. Glushkov Institute of Cybernetics,
-The National Academy of Sciences of Ukraine
+The National Academy of Sciences of Ukraine -->
 
 <!-- You can preview a completed latest version of the UkrVectōrēs app here:
 
