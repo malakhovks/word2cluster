@@ -29,6 +29,7 @@ Temporary Items
 *.code-workspace
 
 *.300d
+*.bin
 
 # Code workspace of vs code
 *.code-workspace
