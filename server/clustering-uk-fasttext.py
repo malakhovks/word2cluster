@@ -8,6 +8,7 @@ import gensim.models.fasttext as ft
 
 
 vectors = ft.load_facebook_vectors('./models/wiki.uk.bin')
+# vectors = ft.load_facebook_vectors('./models/cc.uk.300.bin')
 
 # ukr_words = ['машина', 'колесо', 'автомобіль', 'літак', 'небо',"вовк", "лиса", "заєць", "казка", "легенда", "байка", "оповідання", "повість", "балада", "інформатика", "математика", "індустрія", "дельтаплан"]
 
