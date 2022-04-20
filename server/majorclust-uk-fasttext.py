@@ -10,7 +10,7 @@ import gensim.models.fasttext as ft
 vectors = ft.load_facebook_vectors('./models/wiki.uk.bin')
 # vectors = ft.load_facebook_vectors('./models/cc.uk.300.bin')
 
-# ukr_words = ['машина', 'колесо', 'автомобіль', 'літак', 'небо',"вовк", "лиса", "заєць", "казка", "легенда", "байка", "оповідання", "повість", "балада", "інформатика", "математика", "індустрія", "дельтаплан"]
+ukr_words = ['машина', 'колесо', 'автомобіль', 'літак', 'небо',"вовк", "лиса", "заєць", "казка", "легенда", "байка", "оповідання", "повість", "балада", "інформатика", "математика", "індустрія", "дельтаплан"]
 
 # lemmatized
 # ukr_words = [
@@ -170,7 +170,7 @@ vectors = ft.load_facebook_vectors('./models/wiki.uk.bin')
 # ]
 
 # non-lemmatized
-ukr_words = [
+ukr_words_non_lemmatized = [
     "предмет",
     "предмет",
     "інформатики",
@@ -553,7 +553,7 @@ ukr_words = [
 ]
 
 words_vectors = np.array([vectors[x] for x in ukr_words])
-vectors = minmax_scale(words_vectors, feature_range=(0, 1))
+vectors = minmax_scale(words_vectors, feature_range=(0.5, 1))
 
 def get_sim_matrix(X, threshold=0.99):
     """Output pairwise cosine similarities in X. Cancel out the bottom
